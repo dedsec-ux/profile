@@ -1,0 +1,12 @@
+[build]
+  publish = "dist/public" # This is where your Vite build output for the client is located
+  command = "npm run build" # This runs your existing build script
+
+[functions]
+  directory = "netlify/functions" # This is where your Netlify Functions will live
+
+# Redirects for your API
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/server/:splat" # Redirect all /api requests to your serverless function
+  status = 200 

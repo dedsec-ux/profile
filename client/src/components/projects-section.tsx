@@ -133,9 +133,14 @@ export default function ProjectsSection() {
         </div>
         
         <div className="text-center mt-12">
-          <button className="bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:shadow-lg hover:animate-neon-glow transition-all duration-200 font-medium">
+          <a
+            href="https://github.com/dedsec-ux"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:shadow-lg hover:animate-neon-glow transition-all duration-200 font-medium inline-block"
+          >
             View All Mobile Apps
-          </button>
+          </a>
         </div>
       </div>
     </section>

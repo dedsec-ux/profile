@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import open from 'open';
 
 const app = express();
 app.use(express.json());
@@ -36,6 +37,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// Export the app for Netlify Functions or direct use
+export { app };
+
 (async () => {
   const server = await registerRoutes(app);
 
@@ -56,15 +60,14 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  // This part will only run when not deployed as a Netlify Function
+  if (server) {
+    const port = 5001;
+    server.listen(port, () => {
+      log(`serving on port ${port}`);
+      if (process.env.NODE_ENV !== 'production') {
+        open(`http://localhost:${port}`);
+      }
+    });
+  }
 })();

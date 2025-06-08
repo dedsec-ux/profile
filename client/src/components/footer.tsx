@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import type { Profile } from "@shared/schema";
+import { Linkedin, Github, Instagram } from "lucide-react";
 
 export default function Footer() {
   const { data: profile } = useQuery<Profile>({
@@ -54,6 +55,35 @@ export default function Footer() {
             >
               Contact
             </button>
+          </div>
+          
+          <div className="flex justify-center space-x-6 mb-8">
+            <a
+              href="https://www.linkedin.com/in/talal-rafiq/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors duration-200"
+            >
+              <Linkedin className="text-2xl" />
+            </a>
+            
+            <a
+              href="https://github.com/dedsec-ux"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors duration-200"
+            >
+              <Github className="text-2xl" />
+            </a>
+            
+            <a
+              href="https://www.instagram.com/itx_txr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors duration-200"
+            >
+              <Instagram className="text-2xl" />
+            </a>
           </div>
           
           <div className="border-t border-border pt-8">
